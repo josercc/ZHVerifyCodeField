@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ZHVerifyCodeFiledFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>5DDE896F1F4C317B007699F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DDE89AA1F4C32B9007699F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DDE89B21F4C32B9007699F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

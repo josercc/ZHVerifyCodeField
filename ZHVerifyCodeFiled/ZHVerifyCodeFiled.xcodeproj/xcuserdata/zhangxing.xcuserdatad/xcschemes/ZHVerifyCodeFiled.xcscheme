@@ -48,6 +48,16 @@
                ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5DDE89B21F4C32B9007699F6"
+               BuildableName = "ZHVerifyCodeFiledFrameworkTests.xctest"
+               BlueprintName = "ZHVerifyCodeFiledFrameworkTests"
+               ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
