@@ -1,0 +1,16 @@
+PODS:
+  - ZHVerifyCodeField (0.1.0)
+
+DEPENDENCIES:
+  - ZHVerifyCodeField (from `../`)
+
+EXTERNAL SOURCES:
+  ZHVerifyCodeField:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ZHVerifyCodeField: 855f64074f944cd287182653a18899568693b070
+
+PODFILE CHECKSUM: ef860563dab6676727af49f59ad83f0d495fba92
+
+COCOAPODS: 1.2.1

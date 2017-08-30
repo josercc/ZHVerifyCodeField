@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DDE89501F4C317B007699F6"
-               BuildableName = "ZHVerifyCodeFiled.app"
-               BlueprintName = "ZHVerifyCodeFiled"
-               ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+               BuildableName = "ZHVerifyCodeField_Example.app"
+               BlueprintName = "ZHVerifyCodeField_Example"
+               ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "ZHVerifyCodeField_Tests.xctest"
+               BlueprintName = "ZHVerifyCodeField_Tests"
+               ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,40 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DDE89641F4C317B007699F6"
-               BuildableName = "ZHVerifyCodeFiledTests.xctest"
-               BlueprintName = "ZHVerifyCodeFiledTests"
-               ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DDE896F1F4C317B007699F6"
-               BuildableName = "ZHVerifyCodeFiledUITests.xctest"
-               BlueprintName = "ZHVerifyCodeFiledUITests"
-               ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DDE89B21F4C32B9007699F6"
-               BuildableName = "ZHVerifyCodeFiledFrameworkTests.xctest"
-               BlueprintName = "ZHVerifyCodeFiledFrameworkTests"
-               ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "ZHVerifyCodeField_Tests.xctest"
+               BlueprintName = "ZHVerifyCodeField_Tests"
+               ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DDE89501F4C317B007699F6"
-            BuildableName = "ZHVerifyCodeFiled.app"
-            BlueprintName = "ZHVerifyCodeFiled"
-            ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "ZHVerifyCodeField_Example.app"
+            BlueprintName = "ZHVerifyCodeField_Example"
+            ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,10 +79,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DDE89501F4C317B007699F6"
-            BuildableName = "ZHVerifyCodeFiled.app"
-            BlueprintName = "ZHVerifyCodeFiled"
-            ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "ZHVerifyCodeField_Example.app"
+            BlueprintName = "ZHVerifyCodeField_Example"
+            ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -104,10 +98,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DDE89501F4C317B007699F6"
-            BuildableName = "ZHVerifyCodeFiled.app"
-            BlueprintName = "ZHVerifyCodeFiled"
-            ReferencedContainer = "container:ZHVerifyCodeFiled.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "ZHVerifyCodeField_Example.app"
+            BlueprintName = "ZHVerifyCodeField_Example"
+            ReferencedContainer = "container:ZHVerifyCodeField.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
