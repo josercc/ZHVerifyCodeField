@@ -8,6 +8,30 @@
 
 import UIKit
 
+@objc protocol BackwardTextFieldDelegate {
+    @objc optional func textFieldDidDeleteBackward(_ textField: UITextField)
+}
+
+public class BackwardTextField: UITextField {
+    
+    weak var backwardDelegate: BackwardTextFieldDelegate?
+    
+    //监听删除事件
+    override public func deleteBackward() {
+        
+        if backwardDelegate != nil {
+            backwardDelegate?.textFieldDidDeleteBackward?(self)
+        }
+        
+        super.deleteBackward()
+    }
+    
+    //禁止复制粘贴
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return false
+    }
+}
+
 /// 每一个输入框的CELL
 public class ZHVerifyCodeFieldCell: UICollectionViewCell {
     
@@ -27,8 +51,8 @@ public class ZHVerifyCodeFieldCell: UICollectionViewCell {
         self.textFiled.autoresizingMask = [.flexibleWidth,.flexibleHeight]
     }
     
-    public lazy var textFiled:UITextField = {
-        let filed = UITextField(frame: CGRect.zero)
+    public lazy var textFiled:BackwardTextField = {
+        let filed = BackwardTextField(frame: CGRect.zero)
         filed.layer.borderWidth = 1.0 / UIScreen.main.scale
         filed.layer.borderColor = #colorLiteral(red: 0.231372549, green: 0.6, blue: 0.9882352941, alpha: 1).cgColor
         filed.textAlignment = .center

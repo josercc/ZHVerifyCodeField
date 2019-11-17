@@ -11,7 +11,7 @@ import UIKit
 
 /// 验证验证码的试图
 @IBDesignable
-public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate {
+public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate, BackwardTextFieldDelegate {
     
     /// ZHVerifyCodeField常亮字符串
     private struct ZHVerifyCodeFieldStringName {
@@ -20,9 +20,9 @@ public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollection
     }
         
     /// ZHVerifyCodeField设置的数据源
-    @IBInspectable public var dataSource:ZHVerifyCodeFieldDataSource?
+    @IBInspectable weak public var dataSource:ZHVerifyCodeFieldDataSource?
     
-    @IBInspectable public var delegate:ZHVerifyCodeFieldDelegate?
+    @IBInspectable weak public var delegate:ZHVerifyCodeFieldDelegate?
     
     @IBInspectable public var item:Int = 4 {
         didSet {
@@ -84,6 +84,15 @@ public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollection
         self.collectionView.reloadData()
     }
     
+    public func clearAllCode() {
+        for e in collectionView.visibleCells.enumerated() {
+            guard let cell = e.element as? ZHVerifyCodeFieldCell else {
+                continue
+            }
+            cell.textFiled.text = nil
+            self.updateTextFieldStyle(withTyping: nil)
+        }
+    }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.item
@@ -93,15 +102,17 @@ public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ZHVerifyCodeFieldStringName.fieldCellIdentifier, for: indexPath) as! ZHVerifyCodeFieldCell
         if let delegate = self.delegate {
             delegate.field?(self, customCell: cell, atIndex: indexPath.row)
+            delegate.field?(self, customCellWhenEmpty: cell)
         }
         cell.textFiled.delegate = self;
+        cell.textFiled.backwardDelegate = self
         cell.textFiled.keyboardType = .numberPad
         return cell
     }
     
     private lazy var collectionView:UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        collectionViewLayout.scrollDirection = .horizontal
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
         view.dataSource = self
         view.delegate = self
@@ -123,6 +134,20 @@ public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollection
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return itemSpance
+    }
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.updateTextFieldStyle(withTyping: textField)
+    }
+    
+    func textFieldDidDeleteBackward(_ textField: UITextField) {
+        if let text = textField.text {
+            if text.count > 0 {
+                return
+            }
+        }
+        //回到上一输入框
+        previousTextFieldEditing(field: textField)
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -149,27 +174,72 @@ public class ZHVerifyCodeField: UIView, UICollectionViewDataSource, UICollection
         return itemSpance
     }
     
+    private func previousTextFieldEditing(field:UITextField) {
+        let cells = collectionView.visibleCells
+        var previousField: UITextField?
+        var isFind: Bool = false
+        for e in cells.reversed().enumerated() {
+            guard let cell = e.element as? ZHVerifyCodeFieldCell else {
+                continue
+            }
+            if isFind && previousField == nil {
+                previousField = cell.textFiled
+            }
+            if cell.textFiled == field {
+                isFind = true
+            }
+        }
+        if let previous = previousField {
+            previous.becomeFirstResponder()
+            self.updateTextFieldStyle(withTyping: previous)
+        }
+    }
+    
     private func nextTextFieldEditing(field:UITextField) {
         let cells = collectionView.visibleCells
         var nextField:UITextField?
         var isFind:Bool = false
+        var text = ""
         for e in cells.enumerated() {
             guard let cell = e.element as? ZHVerifyCodeFieldCell else {
                 continue
             }
-            if isFind {
+            text += cell.textFiled.text ?? ""
+            if isFind && nextField == nil {
                 nextField = cell.textFiled
-                break
             }
-            guard cell.textFiled == field else {
-                continue
+            if cell.textFiled == field {
+                isFind = true
             }
-            isFind = true
         }
-        field.resignFirstResponder()
+        //已全部输入
+        if text.count >= self.item {
+            field.resignFirstResponder()
+            delegate?.field?(self, didCompletionInputCode: text)
+            return
+        }
+        
         if let next = nextField {
             next.becomeFirstResponder()
+            self.updateTextFieldStyle(withTyping: next)
         }
     }
     
+    private func updateTextFieldStyle(withTyping textField: UITextField?) {
+        for e in collectionView.visibleCells.enumerated() {
+            guard let cell = e.element as? ZHVerifyCodeFieldCell else {
+                continue
+            }
+            if textField == cell.textFiled {
+                delegate?.field?(self, customCellWhenTyping: cell)
+                continue
+            }
+            let text = cell.textFiled.text
+            if text == nil || text!.isEmpty {
+                delegate?.field?(self, customCellWhenEmpty: cell)
+            } else {
+                delegate?.field?(self, customCellWhenTyped: cell)
+            }
+        }
+    }
 }
