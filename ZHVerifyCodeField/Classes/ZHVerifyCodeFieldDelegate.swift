@@ -17,6 +17,27 @@ import Foundation
     ///   - atIndex: 所在的索引
     @objc optional func field(_ field:ZHVerifyCodeField, customCell:ZHVerifyCodeFieldCell, atIndex index:Int)
     
+    /// 配置未输入状态下的ZHVerifyCodeFiledCell
+    ///
+    /// - Parameters:
+    ///   - filed: 配置的ZHVerifyCodeFiled对象
+    ///   - customCell: 自定义ZHVerifyCodeFiledCell的对象
+    @objc optional func field(_ field:ZHVerifyCodeField, customCellWhenEmpty cell:ZHVerifyCodeFieldCell)
+    
+    /// 配置正在输入状态下的ZHVerifyCodeFiledCell
+    ///
+    /// - Parameters:
+    ///   - filed: 配置的ZHVerifyCodeFiled对象
+    ///   - customCell: 自定义ZHVerifyCodeFiledCell的对象
+    @objc optional func field(_ field:ZHVerifyCodeField, customCellWhenTyping cell:ZHVerifyCodeFieldCell)
+    
+    /// 配置已输入状态下的ZHVerifyCodeFiledCell
+    ///
+    /// - Parameters:
+    ///   - filed: 配置的ZHVerifyCodeFiled对象
+    ///   - customCell: 自定义ZHVerifyCodeFiledCell的对象
+    @objc optional func field(_ field:ZHVerifyCodeField, customCellWhenTyped cell:ZHVerifyCodeFieldCell)
+    
     /// 输入完验证码的回调
     ///
     /// - Parameters:
