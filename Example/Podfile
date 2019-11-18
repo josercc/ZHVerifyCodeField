@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'ZHVerifyCodeField_Example' do
   pod 'ZHVerifyCodeField', :path => '../'
-
-  target 'ZHVerifyCodeField_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
